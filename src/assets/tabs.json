@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Dashboard",
+        "id": "dashboard",
+        "pinned": false
+    },
+    {
+        "title": "Banking",
+        "id": "banking",
+        "pinned": false
+    },
+    {
+        "title": "Telefonie",
+        "id": "telefonie",
+        "pinned": false
+    },
+    {
+        "title": "Accounting",
+        "id": "accounting",
+        "pinned": false
+    }
+]

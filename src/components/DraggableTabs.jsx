@@ -2,13 +2,10 @@ import React, { useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Tabs from './Tabs';
+import TABS from "../assets/tabs.json";
 
 const DraggableTabs = () => {
-    const [tabs, setTabs] = useState([
-        { id: 11, title: 'Tab 11' },
-        { id: 22, title: 'Tab 22' },
-        { id: 33, title: 'Tab 33' },
-    ]);
+    const [tabs, setTabs] = useState(TABS);
 
     const moveTab = (dragIndex, hoverIndex) => {
         const updatedTabs = [...tabs];

@@ -1,5 +1,16 @@
 import React from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import accounting from "../assets/icons/accounting.svg";
+import banking from "../assets/icons/banking.svg";
+import dashboard from "../assets/icons/dashboard.svg";
+import telefonie from "../assets/icons/telefonie.svg"
+
+const ICONS = [
+    { icon: accounting, id: "accounting" },
+    { icon: banking, id: "banking" },
+    { icon: dashboard, id: "dashboard" },
+    { icon: telefonie, id: "telefonie" }
+];
 
 export const Tabs = ({ tab, index, moveTab }) => {
     const [, ref] = useDrag({
@@ -17,9 +28,16 @@ export const Tabs = ({ tab, index, moveTab }) => {
         },
     });
 
+    const currentIcon = ICONS.find(iconObj => iconObj.id === tab.id);
     return (
-        <div ref={(node) => ref(drop(node))} className="tab">
-            {tab.id}
+        <div ref={(node) => ref(drop(node))} className="tab" >
+            <div className='tab-title'>
+                {currentIcon && (
+                    <img src={currentIcon.icon} alt="Icon" width="15" height="15" />
+                )}
+                <span>{tab.title}</span>
+            </div>
+
         </div>
     );
 };
