@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import Tabs from './Tabs';
-import TABS from "../assets/tabs.json";
+import TABS_DATA from "../assets/tabs.json";
 
 const DraggableTabs = () => {
-    const [tabs, setTabs] = useState(TABS);
+    const [tabs, setTabs] = useState(() => {
+        const savedTabs = localStorage.getItem('updatedTabs');
+        return savedTabs ? JSON.parse(savedTabs) : TABS_DATA;
+    });
 
     const moveTab = (dragIndex, hoverIndex) => {
         const updatedTabs = [...tabs];
@@ -13,6 +16,10 @@ const DraggableTabs = () => {
         updatedTabs.splice(hoverIndex, 0, draggedTab);
         setTabs(updatedTabs);
     };
+
+    useEffect(() => {
+        localStorage.setItem('updatedTabs', JSON.stringify(tabs));
+    }, [tabs]);
 
     return (
         <DndProvider backend={HTML5Backend}>
