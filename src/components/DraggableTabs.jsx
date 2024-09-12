@@ -9,23 +9,39 @@ const DraggableTabs = () => {
         const savedTabs = localStorage.getItem('updatedTabs');
         return savedTabs ? JSON.parse(savedTabs) : TABS_DATA;
     });
+    const [pinnedTabs, setPinnedTabs] = useState([])
 
     const moveTab = (dragIndex, hoverIndex) => {
         const updatedTabs = [...tabs];
+        console.log("dragIndex = ", dragIndex);
         const [draggedTab] = updatedTabs.splice(dragIndex, 1);
         updatedTabs.splice(hoverIndex, 0, draggedTab);
         setTabs(updatedTabs);
+        const pinnedTabsIds = updatedTabs
+            .filter((tab) => tab.pinned === true)
+            .map((tab) => tab.id);
+        setPinnedTabs(pinnedTabsIds);
+        console.log("pinnedTabs = ", pinnedTabs, tabs.find(item => item.id === 'telefonie'));
+
     };
 
     useEffect(() => {
         localStorage.setItem('updatedTabs', JSON.stringify(tabs));
     }, [tabs]);
 
+    const handleDoubleClick = (index) => {
+        const updatedTabs = tabs.map((tab, i) =>
+            i === index ? { ...tab, pinned: !tab.pinned } : tab
+        );
+        setTabs(updatedTabs);
+    };
     return (
         <DndProvider backend={HTML5Backend}>
             <div className="tabs-container">
                 {tabs.map((tab, index) => (
-                    <Tabs key={tab.id} tab={tab} index={index} moveTab={moveTab} />
+                    <Tabs key={tab.id} tab={tab} index={index} moveTab={moveTab}
+                        onDoubleClick={handleDoubleClick} />
+
                 ))}
             </div>
         </DndProvider>

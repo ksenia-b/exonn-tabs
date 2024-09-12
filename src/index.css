@@ -22,3 +22,12 @@
   justify-content: center;
 
 }
+.tab.pinned {
+  background-color: #f0f0f0; 
+  border: 2px solid #007bff;
+  width: 16px;
+  height: 16px;
+}
+.tab.pinned span {
+  display: none;
+}

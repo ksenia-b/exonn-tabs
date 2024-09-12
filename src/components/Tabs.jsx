@@ -12,7 +12,7 @@ const ICONS = [
     { icon: telefonie, id: "telefonie" }
 ];
 
-export const Tabs = ({ tab, index, moveTab }) => {
+export const Tabs = ({ tab, index, moveTab, onDoubleClick }) => {
     const [, ref] = useDrag({
         type: 'TAB',
         item: { index },
@@ -30,16 +30,24 @@ export const Tabs = ({ tab, index, moveTab }) => {
 
     const currentIcon = ICONS.find(iconObj => iconObj.id === tab.id);
     return (
-        <div ref={(node) => ref(drop(node))} className="tab" >
-            <div className='tab-title'>
+
+        <div ref={(node) => ref(drop(node))} className={`tab ${tab.pinned ? 'pinned' : ''}`} onDoubleClick={() => onDoubleClick(index)}>
+            <div>
                 {currentIcon && (
-                    <img src={currentIcon.icon} alt="Icon" width="15" height="15" />
+                    <img
+                        src={currentIcon.icon}
+                        alt="Icon"
+                        width="15"
+                        height="15"
+                    />
                 )}
                 <span>{tab.title}</span>
             </div>
-
         </div>
+
+
     );
+
 };
 
 export default Tabs;
