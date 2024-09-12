@@ -33,7 +33,13 @@ const DraggableTabs = () => {
         const updatedTabs = tabs.map((tab, i) =>
             i === index ? { ...tab, pinned: !tab.pinned } : tab
         );
-        setTabs(updatedTabs);
+
+        const pinnedTabs = updatedTabs.filter(tab => tab.pinned);
+        const unpinnedTabs = updatedTabs.filter(tab => !tab.pinned);
+
+        const sortedTabs = [...pinnedTabs, ...unpinnedTabs]
+        console.log('SORTED: ', sortedTabs)
+        setTabs(sortedTabs);
     };
     return (
         <DndProvider backend={HTML5Backend}>
