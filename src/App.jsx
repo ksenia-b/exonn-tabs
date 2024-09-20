@@ -7,7 +7,6 @@ const App = () => (
   <DndProvider backend={HTML5Backend}>
     <div>
       <h1>Draggable Tabs Example</h1>
-      {/* <Tabs /> */}
       <DraggableTabs />
     </div>
   </DndProvider>

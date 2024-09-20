@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import Tabs from './Tabs';
+import Tab from './Tab';
 import TABS_DATA from "../assets/tabs.json";
 
 const DraggableTabs = () => {
@@ -45,7 +45,7 @@ const DraggableTabs = () => {
         <DndProvider backend={HTML5Backend}>
             <div className="tabs-container">
                 {tabs.map((tab, index) => (
-                    <Tabs key={tab.id} tab={tab} index={index} moveTab={moveTab}
+                    <Tab key={tab.id} tab={tab} index={index} moveTab={moveTab} setTabs={setTabs} tabs={tabs}
                         onDoubleClick={handleDoubleClick} />
 
                 ))}
