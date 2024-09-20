@@ -2,11 +2,29 @@
   display: flex;
 }
 
+button, .tab{
+  cursor: url('/assets/cursorPointer.svg'), pointer;
+}
+
 .tab{
  background: #FEFEFE;
-  padding: 15px;
   border-top: 1px solid #AEB6CE;
+  position: relative;
+  padding: 10px;
+}
+
+.close-btn {
+  display: none;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 12px;
   cursor: pointer;
+  position: absolute;
+}
+
+.tab:hover .close-btn {
+  display: inline;
 }
 
 .tab:hover{
@@ -30,4 +48,13 @@
 }
 .tab.pinned span {
   display: none;
+}
+
+.tabTitle{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px; 
+  display: inline-block;
+  vertical-align: middle;
 }
